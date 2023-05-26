@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>Laboratorio Virtual UFAL</title>
+  <meta name="description" content="Laboratorio Virtual UFAL" />
+
+  <script src="./lib/aframe.min.js"></script>
+  <script src="./lib/aframe-extras.controls.min.js"></script>
+  <script src="./lib/simple-navmesh-constraint.js"></script>
+
+  <script src="https://recast-api.donmccurdy.com/aframe-inspector-plugin-recast.js"></script>
+
+</head>
+
+<body>
+
+
+  <!-- Interactive Mode:    <ctrl> + <alt> + i     -->
+
+
+
+  <script src="./util.js"></script>
+
+  <script src="./components.js"> </script>
+
+
+
+
+
+  <!--
+  <a-scene physics="gravity: 0.0" renderer="antialias: true; shadowMapType: THREE.PCFSoftShadowMap;" id="#scene">
+  -->
+
+  <a-scene renderer="antialias: true;" id="#scene" inspector-plugin-recast>
+
+    <!-- Laboratory -->
+
+    <a-assets>
+      <a-asset-item id="lab-gltf" src="./assets/demo_lab.gltf"></a-asset-item>
+    </a-assets>
+    <a-entity id='#lab' position="0.0 0.0 0.0" gltf-model="#lab-gltf" scale="1.0 1.0 1.0">
+    </a-entity>
+
+    <!-- Player -->
+    
+    <a-entity
+      movement-controls="speed: 0.15; camera: #camera;"
+      position="0 0.2 0"
+      id="#player">
+
+      <a-entity 
+        camera="near:0.01;" 
+        look-controls
+        fov="100" 
+        id="#camera" 
+        position="0 1.65 0">
+        
+        <a-entity id='#hud' position="-0.3 0.15 -0.5" scale="0.05 0.05 0.05" rotation="0 0 0" animation-mixer></a-entity>
+
+      </a-entity>
+
+      <a-entity id="leftController" oculus-touch-controls="hand: left;" >
+
+        <a-entity cursor="fuse: true; fuseTimeout: 500" position="0 0 -.1"
+          geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03" material="color: gray; shader: flat"
+          raycaster="objects: .clicable; showLine: true; far: 100" line="color: red; opacity: 0.5;">
+        </a-entity>
+      </a-entity>
+
+      <a-entity id="rightController" oculus-touch-controls="hand: right;" thumbstick-logging-right>
+
+        <a-entity cursor="fuse: true; fuseTimeout: 500" position="0 0 -.1"
+          geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03" material="color: gray; shader: flat"
+          raycaster="objects: .clicable; showLine: true; far: 100; lineColor: red; lineOpacity: 0.5">
+
+        </a-entity>
+      </a-entity>
+
+    </a-entity> <!-- player -->
+
+    <!-- Navigation Mesh 
+    <a-assets>
+      <a-asset-item id="my-nav-mesh" src="./assets/nav_mesh.gltf">
+      </a-asset-item>
+    </a-assets>
+
+    <a-entity gltf-model="#my-nav-mesh" class="navmesh" visible="false"></a-entity>    -->
+
+    <!-- Light -->
+    <a-entity light="type: ambient; color: #FFF"></a-entity>
+    <!-- Hall -->
+    <a-entity light="type: directional; color: #FFF; intensity: 0.4" position="7.9 2.8 0.0"></a-entity>
+    <a-entity light="type: directional; color: #FFF; intensity: 0.4" position="3.9 2.8 0.0"></a-entity>
+    <a-entity light="type: directional; color: #FFF; intensity: 0.4" position="-2.1 2.8 0.0"></a-entity>
+
+    <!-- Minor Lab -->
+    <a-entity light="type: directional; color: #FFF; intensity: 0.4" position="6.7 2.8 -5.3"></a-entity>
+
+    <!-- Major Lab -->
+    <a-entity light="type: directional; color: #FFF; intensity: 0.4" position="9.0 2.8 5.8"></a-entity>
+    <a-entity light="type: directional; color: #FFF; intensity: 0.4" position="5.2 2.8 5.8"></a-entity>
+    <a-entity light="type: directional; color: #FFF; intensity: 0.4" position="1.9 2.8 5.8"></a-entity>
+
+
+    <!-- Misc -->
+    <a-assets>
+      <img id="sky" src="../factory.jpg">
+    </a-assets>
+    <a-sky src="#sky" phi-start="-90" theta-start="-5" radius="500"></a-sky>
+  </a-scene>
+</body>
+
+
+<script src="./controller.js"> </script>
+
+</html>
