@@ -46,6 +46,7 @@
     <!-- Player -->
     
     <a-entity
+      simple-navmesh-constraint="navmesh:.navmesh;fall:0.5;height:0;"
       movement-controls="speed: 0.15; camera: #camera;"
       position="0 0.2 0"
       id="#player">
@@ -80,13 +81,13 @@
 
     </a-entity> <!-- player -->
 
-    <!-- Navigation Mesh 
+    <!-- Navigation Mesh    -->
     <a-assets>
-      <a-asset-item id="my-nav-mesh" src="./assets/nav_mesh.gltf">
+      <a-asset-item id="my-nav-mesh" src="./assets/demo_lab_navmesh.gltf">
       </a-asset-item>
     </a-assets>
 
-    <a-entity gltf-model="#my-nav-mesh" class="navmesh" visible="false"></a-entity>    -->
+    <a-entity gltf-model="#my-nav-mesh" class="navmesh" visible="false"></a-entity> 
 
     <!-- Light -->
     <a-entity light="type: ambient; color: #FFF"></a-entity>
